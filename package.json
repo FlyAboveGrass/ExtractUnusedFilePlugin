@@ -1,0 +1,27 @@
+{
+  "name": "extract-unused-file-plugin",
+  "version": "1.0.0",
+  "description": "A Webpack plugin to delete unused files.",
+  "main": "lib/ExtractUnusedFilePlugin.js",
+  "scripts": {
+    "test": "node test/test.js",
+    "build": "webpack",
+    "publish": "npm publish"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "unused",
+    "files",
+    "cleanup"
+  ],
+  "author": "FlyAboveGrass",
+  "homepage": "https://github.com/FlyAboveGrass/ExtractUnusedFilePlugin",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.0.0"
+  }
+} 
