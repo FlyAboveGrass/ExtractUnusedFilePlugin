@@ -89,27 +89,27 @@ class ExtractUnusedFilePlugin {
 
       // 第三步，将第一步和第二步得到的结果进行比对，如果第一步中的文件在第二步中不存在，则将该文件输出到一个 json 列表中
       const unusedFileList = fileList.filter((file) => !webpackFileList.includes(file));
+      const unusedFileListGroupBySuffix = groupFilesBySuffix(unusedFileList);
 
       // 第四步，将得到的文件列表输出到控制台
       if (outputType === 'json') {
-        const unusedFileListGroupBySuffix = groupFilesBySuffix(unusedFileList);
         fs.writeFileSync(
           path.resolve(outputPath, './unusedFileList.json'),
           JSON.stringify(unusedFileListGroupBySuffix, null, 2),
         );
-
-        // 输出中间数据，方便调试和分析
-        if (debug) {
-          fs.writeFileSync(
-            path.resolve(outputPath, './testData.json'),
-            JSON.stringify({ files, fileList, webpackFileList }, null, 2),
-          );
-        }
       } else if (outputType === 'browser') {
         fs.writeFileSync(outputPath, unusedFileList.join('\n'));
+      } else if (outputType === 'log') {
+        console.log('\n 🚀🚀🚀🚀 unusedFileList =>', unusedFileList);
       }
 
-      console.log('🚀🚀🚀🚀 unusedFileList =>', unusedFileList);
+      // 输出中间数据，方便调试和分析
+      if (debug) {
+        fs.writeFileSync(
+          path.resolve(outputPath, './middleData.json'),
+          JSON.stringify({ '全部文件': files, 'excludeFiles 排除文件后的结果': fileList, 'webpack处理过的文件': webpackFileList, '未使用文件': unusedFileListGroupBySuffix }, null, 2),
+        );
+      }
 
       if (isDelete) {
         unusedFileList.forEach((file) => {

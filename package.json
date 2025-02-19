@@ -2,7 +2,7 @@
   "name": "extract-unused-file-plugin",
   "version": "1.0.0",
   "description": "A Webpack plugin to delete unused files.",
-  "main": "lib/ExtractUnusedFilePlugin.js",
+  "main": "ExtractUnusedFilePlugin.js",
   "scripts": {
     "test": "node test/test.js",
     "build": "webpack",
